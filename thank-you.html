@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="lws_logo.png" type="image/png">
+    <title>Transmission Received | Leema Web Solutions</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --bg-card: rgba(15, 15, 20, 0.9);
+            --accent-cyan: #00f3ff;
+            --text-main: #e0e0e0;
+            --text-dim: #a0a0a0;
+            --glow: 0 0 15px rgba(0, 243, 255, 0.3);
+            --nav-height: 80px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background-color: var(--bg-dark); 
+            color: var(--text-main); 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cyber-grid {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px; z-index: -1;
+            mask-image: radial-gradient(circle at center, black, transparent 90%);
+        }
+
+        /* Navigation (Same as Homepage) */
+        nav { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 0 8%; height: var(--nav-height); background: rgba(5, 5, 5, 0.95); 
+            backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; 
+            z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+        }
+        
+        .logo-container { display: flex; align-items: center; text-decoration: none; }
+        .logo-img { height: 50px; width: auto; margin-right: 15px; filter: drop-shadow(0 0 5px rgba(0, 243, 255, 0.5)); }
+        .logo-text { font-size: 1.2rem; font-weight: bold; color: var(--accent-cyan); letter-spacing: 2px; display: flex; flex-direction: column; line-height: 1.1; }
+        .logo-text .sub { font-size: 0.7rem; font-weight: 300; color: var(--text-main); }
+
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            padding: 8px 12px;
+            cursor: pointer;
+            font-family: 'JetBrains Mono';
+            font-size: 0.8rem;
+            border-radius: 4px;
+        }
+
+        .nav-links { display: flex; list-style: none; gap: 12px; }
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--text-main); 
+            font-size: 0.75rem; 
+            font-family: 'JetBrains Mono', monospace;
+            padding: 8px 14px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 4px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .nav-links a:hover { 
+            color: var(--accent-cyan); 
+            border-color: var(--accent-cyan);
+            background: rgba(0, 243, 255, 0.05);
+            box-shadow: var(--glow); 
+        }
+
+        /* Content Area */
+        .thank-you-wrapper {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            padding-top: var(--nav-height);
+        }
+
+        .container {
+            padding: 40px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            background: var(--bg-card);
+            box-shadow: var(--glow);
+            border-radius: 8px;
+            max-width: 600px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .container h1 { 
+            font-family: 'JetBrains Mono', monospace; 
+            color: var(--accent-cyan); 
+            margin-bottom: 20px; 
+            font-size: 1.5rem; 
+        }
+
+        .container p { 
+            margin-bottom: 30px; 
+            font-size: 1rem; 
+            line-height: 1.6; 
+            color: var(--text-dim); 
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: 1px solid var(--accent-cyan);
+            background: transparent;
+            color: var(--accent-cyan);
+            font-family: 'JetBrains Mono', monospace;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 0.8rem;
+            display: inline-block;
+            border-radius: 4px;
+        }
+
+        .btn:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            box-shadow: var(--glow);
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) { 
+            nav { padding: 0 5%; }
+            .nav-toggle { display: block; }
+            .nav-links { 
+                display: none; 
+                position: absolute; 
+                top: var(--nav-height); 
+                left: 0; 
+                width: 100%; 
+                background: rgba(5, 5, 5, 0.98); 
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 20px 10px; 
+                gap: 10px; 
+                border-bottom: 1px solid var(--accent-cyan);
+            }
+            .nav-links.active { display: flex; } 
+            .logo-text { font-size: 0.9rem; }
+            .logo-img { height: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cyber-grid"></div>
+
+    <nav>
+        <a href="index3.html" class="logo-container">
+            <img src="lws_logo.png" alt="Leema Web Solutions Logo" class="logo-img">
+            <div class="logo-text">
+                LEEMA
+                <span class="sub">WEB SOLUTIONS</span>
+            </div>
+        </a>
+
+        <button class="nav-toggle" id="menu-btn">MENU</button>
+
+        <ul class="nav-links" id="nav-menu">
+            <li><a href="index3.html#about">About</a></li>
+            <li><a href="index3.html#founder">Leadership</a></li>
+            <li><a href="index3.html#services">Services</a></li>
+            <li><a href="index3.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="thank-you-wrapper">
+        <div class="container">
+            <h1>[ TRANSMISSION SUCCESSFUL ]</h1>
+            <p>Your data packet has been encrypted and received. Our team will analyze your requirements and establish a secure connection within 24 hours.</p>
+            <a href="index3.html" class="btn">> RETURN TO TERMINAL</a>
+        </div>
+    </div>
+
+    <footer style="padding: 40px 10%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-dim); font-size: 0.8rem;">
+        <p>&copy; 2026 LEEMA WEB SOLUTIONS</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuBtn.innerText = navMenu.classList.contains('active') ? 'CLOSE [X]' : 'MENU';
+        });
+    </script>
+
+</body>
+</html>
