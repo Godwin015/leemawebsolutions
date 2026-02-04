@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="lws_logo.png" type="image/png">
+    <title>Leema Web Solutions | AI & Cybersecurity Agency</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --bg-card: rgba(15, 15, 20, 0.9);
+            --accent-cyan: #00f3ff;
+            --text-main: #e0e0e0;
+            --text-dim: #a0a0a0;
+            --glow: 0 0 15px rgba(0, 243, 255, 0.3);
+            --nav-height: 80px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        section { 
+            scroll-margin-top: var(--nav-height); 
+            padding: 80px 10%; 
+        }
+
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Inter', sans-serif; line-height: 1.6; }
+        h1, h2, h3, .mono { font-family: 'JetBrains Mono', monospace; }
+
+        .cyber-grid {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px; z-index: -1;
+            mask-image: radial-gradient(circle at center, black, transparent 90%);
+        }
+
+        /* Navigation */
+        nav { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 0 8%; height: var(--nav-height); background: rgba(5, 5, 5, 0.95); 
+            backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; 
+            z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+        }
+        
+        .logo-container { display: flex; align-items: center; }
+        .logo-img { height: 50px; width: auto; margin-right: 15px; filter: drop-shadow(0 0 5px rgba(0, 243, 255, 0.5)); }
+        .logo-text { font-size: 1.2rem; font-weight: bold; color: var(--accent-cyan); letter-spacing: 2px; display: flex; flex-direction: column; line-height: 1.1; }
+        .logo-text .sub { font-size: 0.7rem; font-weight: 300; color: var(--text-main); }
+
+        /* Nav Toggle Button (Hidden on Desktop) */
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            padding: 8px 12px;
+            cursor: pointer;
+            font-family: 'JetBrains Mono';
+            font-size: 0.8rem;
+            border-radius: 4px;
+        }
+
+        /* Nav Buttons */
+        .nav-links { display: flex; list-style: none; gap: 12px; }
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--text-main); 
+            font-size: 0.75rem; 
+            font-family: 'JetBrains Mono', monospace;
+            padding: 8px 14px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 4px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .nav-links a:hover { 
+            color: var(--accent-cyan); 
+            border-color: var(--accent-cyan);
+            background: rgba(0, 243, 255, 0.05);
+            box-shadow: var(--glow); 
+        }
+
+        /* Hero Section */
+        header { height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 10%; }
+        header h1 { font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 20px; }
+        .hero-sub { max-width: 600px; color: var(--text-dim); margin-bottom: 30px; }
+
+        /* Typewriter Cursor */
+        #typewriter { min-height: 1.5em; display: inline-block; }
+        #typewriter::after { content: "|"; animation: blink 1s infinite; margin-left: 5px; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        .section-title { font-size: 1.8rem; margin-bottom: 40px; color: var(--accent-cyan); }
+
+        /* Leadership Card */
+        .founder-container { display: grid; grid-template-columns: 300px 1fr; gap: 40px; background: var(--bg-card); padding: 40px; border: 1px solid rgba(0, 243, 255, 0.1); border-radius: 8px; }
+        .founder-img { width: 100%; border-radius: 4px; filter: grayscale(100%); transition: 0.5s; }
+        .founder-img:hover { filter: grayscale(0%); border: 1px solid var(--accent-cyan); }
+        .founder-info h3 { font-size: 1.5rem; margin-bottom: 5px; }
+
+        /* Services Grid */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .service-card { background: var(--bg-card); padding: 30px; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; transition: 0.3s; }
+        .service-card i { font-size: 2rem; color: var(--accent-cyan); margin-bottom: 15px; }
+
+        /* Forms & Generic Buttons */
+        form { display: grid; gap: 15px; max-width: 600px; }
+        input, textarea { background: #111; border: 1px solid #333; padding: 12px; color: white; font-family: 'Inter', sans-serif; border-radius: 4px; }
+        .btn { padding: 12px 30px; border: 1px solid var(--accent-cyan); background: transparent; color: var(--accent-cyan); font-family: 'JetBrains Mono'; cursor: pointer; transition: 0.3s; text-align: center; text-decoration: none; display: inline-block; border-radius: 4px; }
+        .btn:hover { background: var(--accent-cyan); color: #000; box-shadow: var(--glow); }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) { 
+            nav { padding: 0 5%; }
+            .nav-toggle { display: block; }
+            .nav-links { 
+                display: none; 
+                position: absolute; 
+                top: var(--nav-height); 
+                left: 0; 
+                width: 100%; 
+                background: rgba(5, 5, 5, 0.98); 
+                flex-direction: row; /* KEEP HORIZONTAL */
+                flex-wrap: wrap;     /* WRAP IF SCREEN IS TOO NARROW */
+                justify-content: center;
+                padding: 20px 10px; 
+                gap: 10px; 
+                border-bottom: 1px solid var(--accent-cyan);
+            }
+            .nav-links a {
+                font-size: 0.65rem;
+                padding: 8px 10px;
+            }
+            .nav-links.active { display: flex; } 
+            .founder-container { grid-template-columns: 1fr; } 
+            .logo-text { font-size: 0.9rem; }
+            .logo-img { height: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cyber-grid"></div>
+
+    <nav>
+        <div class="logo-container">
+            <img src="lws_logo.png" alt="Leema Web Solutions Logo" class="logo-img">
+            <div class="logo-text">
+                LEEMA
+                <span class="sub">WEB SOLUTIONS</span>
+            </div>
+        </div>
+
+        <button class="nav-toggle" id="menu-btn">MENU</button>
+
+        <ul class="nav-links" id="nav-menu">
+            <li><a href="#about">About</a></li>
+            <li><a href="#founder">Leadership</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home">
+        <span id="typewriter" class="mono" style="color: var(--accent-cyan);"></span>
+        <h1>Building the <br><span style="color: var(--accent-cyan);">Intelligence Layer.</span></h1>
+        <p class="hero-sub">Leema Web Solutions is a technology firm specializing in high-performance web development, AI automation, and cybersecurity defense.</p>
+        <div>
+            <a href="#contact" class="btn">REQUEST CONSULTATION</a>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2 class="section-title">// Mission Statement</h2>
+        <p style="max-width: 800px; color: var(--text-dim); font-size: 1.1rem;">
+            In a digital-first world, your security is your reputation. We bridge the gap between <strong>complex AI innovation</strong> and <strong>robust cybersecurity</strong>. 
+            Whether we are deploying machine learning models or performing penetration tests, our work is defined by precision and resilience.
+        </p>
+    </section>
+
+    <section id="founder">
+        <h2 class="section-title">// Leadership & Expertise</h2>
+        <div class="founder-container">
+            <div class="founder-visual">
+                <img src="proffile.jpg" alt="Godwin Edward" class="founder-img">
+            </div>
+            <div class="founder-info">
+                <h3>Edward Godwin</h3>
+                <span class="title">Founder & Chief Executive Officer</span>
+                <p style="color: var(--text-dim); margin-bottom: 20px;">
+                    A specialist in Cybersecurity and Artificial Intelligence with a deep background in vulnerability assessment and scalable application architecture. Godwin leads the technical vision for Leema Web Solutions, ensuring every project meets elite security standards.
+                </p>
+                
+                <h4 class="mono" style="font-size: 0.9rem; margin-bottom: 15px; color: var(--accent-cyan);">[ Professional Experience ]</h4>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025 - Present</div>
+                        <p><strong>Website Administrator</strong><br>Civil Alliance for Climate Protection</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025</div>
+                        <p><strong>Cyber Security Intern</strong><br>Prodigy InfoTech (Encryption & Network Scanning)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2024</div>
+                        <p><strong>Security & Forensics</strong><br>Cyber Secured India (Vulnerability Assessment)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2 class="section-title">// Our Solutions</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-microchip"></i>
+                <h3>AI Integration</h3>
+                <p>Deploying Machine Learning models and AI-driven automation to optimize business workflows.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-user-secret"></i>
+                <h3>Pentesting</h3>
+                <p>Proactive security testing and vulnerability reporting for web and mobile platforms.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-globe"></i>
+                <h3>Full-Stack Dev</h3>
+                <p>Building secure, scalable websites using Python, Django, and modern frontend technologies.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="background: rgba(0, 243, 255, 0.02);">
+        <h2 class="section-title">// Secure Channel</h2>
+        <p style="margin-bottom: 30px; color: var(--text-dim);">Ready to secure your digital future? Send us a message.</p>
+        
+        <form action="https://formsubmit.co/godwynedward015@gmail.com" method="POST">
+    <input type="text" name="_honey" style="display:none">
+    
+    <input type="hidden" name="_captcha" value="false">
+
+    <input type="hidden" name="_next" value="https://leemawebsolutions.net/thank-you.html">
+
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="email" name="email" placeholder="Email Address" required>
+    <input type="text" name="_subject" placeholder="New Project Inquiry">
+    <textarea name="message" rows="5" placeholder="Your Requirements" required></textarea>
+    <button type="submit" class="btn">INITIALIZE CONTACT</button>
+</form>
+    </section>
+
+    <footer style="padding: 40px 10%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-dim); font-size: 0.8rem;">
+        <p>&copy; 2026 LEEMA WEB SOLUTIONS | leemawebsolutions.net</p>
+        <p class="mono" style="margin-top: 10px; color: var(--accent-cyan);">// Securing the Future.</p>
+    </footer>
+
+    <script>
+        // --- MOBILE MENU LOGIC ---
+        const menuBtn = document.getElementById('menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuBtn.innerText = navMenu.classList.contains('active') ? 'CLOSE [X]' : 'MENU';
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuBtn.innerText = 'MENU';
+            });
+        });
+
+        // --- TYPEWRITER EFFECT ---
+        const textElement = document.getElementById('typewriter');
+        const phrases = [
+            "> Executing Secure Code...",
+            "> Deploying AI Models...",
+            "> Fortifying Digital Perimeters...",
+            "> Leema Web Solutions Active."
+        ];
+        let i = 0;
+        let j = 0;
+        let currentPhrase = [];
+        let isDeleting = false;
+
+        function loop() {
+            textElement.innerHTML = currentPhrase.join('');
+            if (i < phrases.length) {
+                if (!isDeleting && j <= phrases[i].length) {
+                    currentPhrase.push(phrases[i][j]);
+                    j++;
+                }
+                if (isDeleting && j <= phrases[i].length) {
+                    currentPhrase.pop();
+                    j--;
+                }
+                if (!isDeleting && j === phrases[i].length) {
+                    isDeleting = true;
+                    setTimeout(loop, 2000); 
+                    return;
+                }
+                if (isDeleting && j === 0) {
+                    currentPhrase = [];
+                    isDeleting = false;
+                    i++;
+                    if (i === phrases.length) i = 0;
+                }
+            }
+            const speed = isDeleting ? 40 : 100;
+            setTimeout(loop, speed);
+        }
+        document.addEventListener('DOMContentLoaded', loop);
+    </script>
+
+</body>
+</html>
