@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="lws_logo.png" type="image/png">
     <title>Leema Web Solutions | AI & Cybersecurity Agency</title>
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+
     <style>
         :root {
             --bg-dark: #050505;
@@ -22,7 +22,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        
+
         section { 
             scroll-margin-top: var(--nav-height); 
             padding: 80px 10%; 
@@ -45,7 +45,7 @@
             backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; 
             z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
         }
-        
+
         .logo-container { display: flex; align-items: center; }
         .logo-img { height: 50px; width: auto; margin-right: 15px; filter: drop-shadow(0 0 5px rgba(0, 243, 255, 0.5)); }
         .logo-text { font-size: 1.2rem; font-weight: bold; color: var(--accent-cyan); letter-spacing: 2px; display: flex; flex-direction: column; line-height: 1.1; }
@@ -194,7 +194,7 @@
                 <p style="color: var(--text-dim); margin-bottom: 20px;">
                     A specialist in Cybersecurity and Artificial Intelligence with a deep background in vulnerability assessment and scalable application architecture. Godwin leads the technical vision for Leema Web Solutions, ensuring every project meets elite security standards.
                 </p>
-                
+
                 <h4 class="mono" style="font-size: 0.9rem; margin-bottom: 15px; color: var(--accent-cyan);">[ Professional Experience ]</h4>
                 <div class="timeline">
                     <div class="timeline-item">
@@ -236,23 +236,76 @@
     </section>
 
     <section id="contact" style="background: rgba(0, 243, 255, 0.02);">
-        <h2 class="section-title">// Secure Channel</h2>
-        <p style="margin-bottom: 30px; color: var(--text-dim);">Ready to secure your digital future? Send us a message.</p>
-        
-        <form action="https://formsubmit.co/802c22c146d16d93e2363e38b483e936" method="POST">
-    <input type="text" name="_honey" style="display:none">
-    
-    <input type="hidden" name="_captcha" value="false">
+    <h2 class="section-title">// Secure Channel</h2>
+    <p style="margin-bottom: 30px; color: var(--text-dim);">
+        Ready to secure your digital future? Send us a message.
+    </p>
 
-    <input type="hidden" name="_next" value="https://leemawebsolutions.net/thank-you.html">
+    <!-- CONTACT FORM -->
+    <form action="https://formsubmit.co/802c22c146d16d93e2363e38b483e936" method="POST">
+        <input type="text" name="_honey" style="display:none">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://leemawebsolutions.net/thank-you.html">
 
-    <input type="text" name="name" placeholder="Full Name" required>
-    <input type="email" name="email" placeholder="Email Address" required>
-    <input type="text" name="_subject" placeholder="New Project Inquiry">
-    <textarea name="message" rows="5" placeholder="Your Requirements" required></textarea>
-    <button type="submit" class="btn">INITIALIZE CONTACT</button>
-</form>
-    </section>
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="text" name="_subject" placeholder="New Project Inquiry">
+        <textarea name="message" rows="5" placeholder="Your Requirements" required></textarea>
+        <button type="submit" class="btn">INITIALIZE CONTACT</button>
+    </form>
+
+    <!-- INTERN APPLICATION SECTION -->
+    <div style="margin-top: 80px;">
+        <h2 class="section-title">// Internship Application Portal</h2>
+        <p style="margin-bottom: 30px; color: var(--text-dim); max-width: 700px;">
+            Leema Web Solutions is building the next generation of AI engineers, security analysts, 
+            and full-stack developers. If you are ready to work on real-world systems, apply below.
+        </p>
+
+        <form action="https://formsubmit.co/802c22c146d16d93e2363e38b483e936"
+              method="POST"
+              enctype="multipart/form-data">
+
+            <!-- Security -->
+            <input type="text" name="_honey" style="display:none">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="New Internship Application">
+            <input type="hidden" name="_next" value="https://leemawebsolutions.net/thank-youu.html">
+
+            <input type="text" name="Full Name" placeholder="Full Name" required>
+            <input type="tel" name="Phone Number" placeholder="Phone Number" required>
+            <input type="email" name="Email Address" placeholder="Email Address" required>
+
+            <select name="Internship Category" required
+                style="background:#111; border:1px solid #333; padding:12px; color:white; border-radius:4px;">
+                <option value="">Select Internship Category</option>
+                <option value="Web Development">Web Development</option>
+                <option value="AI / Machine Learning">AI / Machine Learning</option>
+                <option value="Cyber Security">Cyber Security</option>
+            </select>
+
+            <label style="color: var(--text-dim); font-size: 0.85rem;">
+                Upload Resume (PDF Only)
+            </label>
+            <input type="file" name="Resume" accept=".pdf" required>
+
+            <label style="color: var(--text-dim); font-size: 0.85rem;">
+                Upload Cover Letter (PDF Only)
+            </label>
+            <input type="file" name="Cover Letter" accept=".pdf">
+
+            <textarea name="Why Ideal Candidate"
+                      rows="6"
+                      placeholder="Why are you an ideal candidate for Leema Web Solutions internshp program?"
+                      required></textarea>
+
+            <button type="submit" class="btn">
+                SUBMIT APPLICATION
+            </button>
+        </form>
+    </div>
+</section>
+
 
     <footer style="padding: 40px 10%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-dim); font-size: 0.8rem;">
         <p>&copy; 2026 LEEMA WEB SOLUTIONS | leemawebsolutions.net</p>
