@@ -5,8 +5,8 @@
 <title>Application Submitted | Leema Web Solutions</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Auto Redirect After 5 Seconds (UNCHANGED) -->
-<meta http-equiv="refresh" content="5;url=https://leemawebsolutions.net">
+<!-- Auto Redirect After 10 Seconds -->
+<meta http-equiv="refresh" content="10;url=https://leemawebsolutions.net">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
@@ -32,7 +32,7 @@ body {
     flex-direction: column;
 }
 
-/* Cyber Grid Background */
+/* Cyber Grid */
 .cyber-grid {
     position: fixed;
     top: 0; left: 0;
@@ -58,35 +58,62 @@ nav {
     width: 100%;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-.logo-container {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-}
+.logo-container { display: flex; align-items: center; text-decoration: none; }
+.logo-img { height: 50px; margin-right: 15px; filter: drop-shadow(0 0 5px rgba(0,243,255,0.5)); }
+.logo-text { font-size: 1.2rem; font-weight: bold; color: var(--accent-cyan); letter-spacing: 2px; display: flex; flex-direction: column; }
+.logo-text .sub { font-size: 0.7rem; font-weight: 300; color: var(--text-main); }
 
-.logo-img {
-    height: 50px;
-    margin-right: 15px;
-    filter: drop-shadow(0 0 5px rgba(0, 243, 255, 0.5));
-}
-
-.logo-text {
-    font-size: 1.2rem;
-    font-weight: bold;
+.nav-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid var(--accent-cyan);
     color: var(--accent-cyan);
-    letter-spacing: 2px;
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono';
+    font-size: 0.8rem;
+    border-radius: 4px;
 }
 
-.logo-text .sub {
-    font-size: 0.7rem;
-    font-weight: 300;
+.nav-links { display: flex; list-style: none; gap: 12px; }
+.nav-links a {
+    text-decoration: none;
     color: var(--text-main);
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 8px 14px;
+    border: 1px solid rgba(0,243,255,0.2);
+    border-radius: 4px;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+.nav-links a:hover {
+    color: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+    background: rgba(0,243,255,0.05);
+    box-shadow: var(--glow);
+}
+
+@media (max-width: 768px) {
+    nav { padding: 0 5%; }
+    .nav-toggle { display: block; }
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: var(--nav-height);
+        left: 0;
+        width: 100%;
+        background: rgba(5,5,5,0.98);
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px 10px;
+        gap: 10px;
+        border-bottom: 1px solid var(--accent-cyan);
+    }
+    .nav-links.active { display: flex; }
 }
 
 /* Content */
@@ -99,45 +126,23 @@ nav {
     padding: 20px;
 }
 
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 10px rgba(0,243,255,0.2); }
+    50% { box-shadow: 0 0 25px rgba(0,243,255,0.5); }
+    100% { box-shadow: 0 0 10px rgba(0,243,255,0.2); }
+}
+
 .container {
     padding: 50px;
-    border: 1px solid rgba(0, 243, 255, 0.2);
+    border: 1px solid rgba(0,243,255,0.2);
     background: var(--bg-card);
-    box-shadow: var(--glow);
     border-radius: 8px;
     max-width: 600px;
     width: 100%;
     text-align: center;
     backdrop-filter: blur(5px);
+    animation: glowPulse 4s ease-in-out infinite;
 }
-
-/* Animated Icon */
-.checkmark-circle {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 25px;
-}
-
-.circle {
-    stroke: var(--accent-cyan);
-    stroke-width: 4;
-    fill: none;
-    stroke-dasharray: 314;
-    stroke-dashoffset: 314;
-    animation: draw-circle 1s ease-out forwards;
-}
-
-.check {
-    stroke: var(--accent-cyan);
-    stroke-width: 4;
-    fill: none;
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
-    animation: draw-check 0.8s 1s ease-out forwards;
-}
-
-@keyframes draw-circle { to { stroke-dashoffset: 0; } }
-@keyframes draw-check { to { stroke-dashoffset: 0; } }
 
 h1 {
     font-family: 'JetBrains Mono', monospace;
@@ -146,15 +151,18 @@ h1 {
     font-size: 1.4rem;
 }
 
-p {
-    color: var(--text-dim);
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
+p { color: var(--text-dim); margin-bottom: 20px; }
 
-#countdown {
-    color: var(--accent-cyan);
-    font-weight: bold;
+#countdown { color: var(--accent-cyan); font-weight: bold; }
+
+.cursor {
+    display: inline-block;
+    margin-left: 4px;
+    animation: blink 1s infinite;
+}
+@keyframes blink {
+    0%,50%,100% { opacity: 1; }
+    25%,75% { opacity: 0; }
 }
 
 .btn {
@@ -166,17 +174,14 @@ p {
     text-decoration: none;
     transition: 0.3s;
     font-size: 0.8rem;
-    display: inline-block;
     border-radius: 4px;
 }
-
 .btn:hover {
     background: var(--accent-cyan);
     color: #000;
     box-shadow: var(--glow);
 }
 
-/* Footer */
 footer {
     padding: 40px 10%;
     text-align: center;
@@ -193,59 +198,88 @@ footer {
 
 <nav>
     <a href="index3.html" class="logo-container">
-        <img src="lws_logo.png" alt="Leema Logo" class="logo-img">
+        <img src="lws_logo.png" class="logo-img">
         <div class="logo-text">
             LEEMA
             <span class="sub">WEB SOLUTIONS</span>
         </div>
     </a>
+
+    <button class="nav-toggle" id="menu-btn">MENU</button>
+
+    <ul class="nav-links" id="nav-menu">
+        <li><a href="index3.html#about">About</a></li>
+        <li><a href="index3.html#founder">Leadership</a></li>
+        <li><a href="index3.html#services">Services</a></li>
+        <li><a href="index3.html#contact">Contact</a></li>
+    </ul>
 </nav>
 
 <div class="wrapper">
-    <div class="container">
+<div class="container">
 
-        <div class="checkmark-circle">
-            <svg viewBox="0 0 100 100">
-                <circle class="circle" cx="50" cy="50" r="50"/>
-                <polyline class="check" points="30,55 45,70 75,40"/>
-            </svg>
-        </div>
+<h1>
+<span id="typing-text"></span><span class="cursor">|</span>
+</h1>
 
-        <h1>[ APPLICATION SUCCESSFUL ]</h1>
+<p>
+Thank you for applying to intern with <strong>Leema Web Solutions</strong>.
+Your submission has been securely received and is under review.
+</p>
 
-        <p>
-            Thank you for applying to intern with <strong>Leema Web Solutions</strong>.
-            Your submission has been securely received and is under review.
-        </p>
+<p>
+Redirecting to homepage in <span id="countdown">10</span> seconds.
+</p>
 
-        <p>
-            Redirecting to homepage in
-            <span id="countdown">5</span> seconds.
-        </p>
+<a href="https://leemawebsolutions.net" class="btn">
+> RETURN NOW
+</a>
 
-        <a href="https://leemawebsolutions.net" class="btn">
-            > RETURN NOW
-        </a>
-
-    </div>
+</div>
 </div>
 
 <footer>
-    © 2026 LEEMA WEB SOLUTIONS
+© 2026 LEEMA WEB SOLUTIONS
 </footer>
 
-<!-- Countdown Script (UNCHANGED LOGIC) -->
 <script>
-let seconds = 5;
+let seconds = 10;
 const countdown = document.getElementById("countdown");
-
 const interval = setInterval(() => {
   seconds--;
   countdown.textContent = seconds;
-  if (seconds <= 0) {
-    clearInterval(interval);
-  }
+  if (seconds <= 0) clearInterval(interval);
 }, 1000);
+</script>
+
+<script>
+const menuBtn = document.getElementById('menu-btn');
+const navMenu = document.getElementById('nav-menu');
+menuBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    menuBtn.innerText = navMenu.classList.contains('active') ? 'CLOSE [X]' : 'MENU';
+});
+</script>
+
+<script>
+const typingElement = document.getElementById("typing-text");
+const finalText = "[ APPLICATION SUCCESSFUL ]";
+
+window.addEventListener("load", () => {
+    typingElement.textContent = "Initializing secure connection...";
+    setTimeout(() => {
+        typingElement.textContent = "";
+        let i = 0;
+        function type() {
+            if (i < finalText.length) {
+                typingElement.textContent += finalText.charAt(i);
+                i++;
+                setTimeout(type, 50);
+            }
+        }
+        type();
+    }, 1200);
+});
 </script>
 
 </body>
