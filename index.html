@@ -51,7 +51,6 @@
         .logo-text { font-size: 1.2rem; font-weight: bold; color: var(--accent-cyan); letter-spacing: 2px; display: flex; flex-direction: column; line-height: 1.1; }
         .logo-text .sub { font-size: 0.7rem; font-weight: 300; color: var(--text-main); }
 
-        /* Nav Toggle Button (Hidden on Desktop) */
         .nav-toggle {
             display: none;
             background: transparent;
@@ -64,7 +63,6 @@
             border-radius: 4px;
         }
 
-        /* Nav Buttons */
         .nav-links { display: flex; list-style: none; gap: 12px; }
         .nav-links a { 
             text-decoration: none; 
@@ -84,36 +82,63 @@
             box-shadow: var(--glow); 
         }
 
-        /* Hero Section */
         header { height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 10%; }
         header h1 { font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 20px; }
         .hero-sub { max-width: 600px; color: var(--text-dim); margin-bottom: 30px; }
 
-        /* Typewriter Cursor */
         #typewriter { min-height: 1.5em; display: inline-block; }
         #typewriter::after { content: "|"; animation: blink 1s infinite; margin-left: 5px; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
         .section-title { font-size: 1.8rem; margin-bottom: 40px; color: var(--accent-cyan); }
 
-        /* Leadership Card */
         .founder-container { display: grid; grid-template-columns: 300px 1fr; gap: 40px; background: var(--bg-card); padding: 40px; border: 1px solid rgba(0, 243, 255, 0.1); border-radius: 8px; }
         .founder-img { width: 100%; border-radius: 4px; filter: grayscale(100%); transition: 0.5s; }
         .founder-img:hover { filter: grayscale(0%); border: 1px solid var(--accent-cyan); }
         .founder-info h3 { font-size: 1.5rem; margin-bottom: 5px; }
 
-        /* Services Grid */
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .service-card { background: var(--bg-card); padding: 30px; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 4px; transition: 0.3s; }
         .service-card i { font-size: 2rem; color: var(--accent-cyan); margin-bottom: 15px; }
 
-        /* Forms & Generic Buttons */
+        /* Partner Section Styles */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 40px;
+            align-items: center;
+            justify-items: center;
+            margin-top: 20px;
+        }
+        .partner-card {
+            text-align: center;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: 0.4s;
+        }
+        .partner-card:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        .partner-logo {
+            max-width: 140px;
+            height: auto;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .partner-card p {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+        }
+
         form { display: grid; gap: 15px; max-width: 600px; }
         input, textarea { background: #111; border: 1px solid #333; padding: 12px; color: white; font-family: 'Inter', sans-serif; border-radius: 4px; }
         .btn { padding: 12px 30px; border: 1px solid var(--accent-cyan); background: transparent; color: var(--accent-cyan); font-family: 'JetBrains Mono'; cursor: pointer; transition: 0.3s; text-align: center; text-decoration: none; display: inline-block; border-radius: 4px; }
         .btn:hover { background: var(--accent-cyan); color: #000; box-shadow: var(--glow); }
 
-        /* Mobile Styles */
         @media (max-width: 768px) { 
             nav { padding: 0 5%; }
             .nav-toggle { display: block; }
@@ -124,21 +149,19 @@
                 left: 0; 
                 width: 100%; 
                 background: rgba(5, 5, 5, 0.98); 
-                flex-direction: row; /* KEEP HORIZONTAL */
-                flex-wrap: wrap;     /* WRAP IF SCREEN IS TOO NARROW */
+                flex-direction: row; 
+                flex-wrap: wrap; 
                 justify-content: center;
                 padding: 20px 10px; 
                 gap: 10px; 
                 border-bottom: 1px solid var(--accent-cyan);
             }
-            .nav-links a {
-                font-size: 0.65rem;
-                padding: 8px 10px;
-            }
+            .nav-links a { font-size: 0.65rem; padding: 8px 10px; }
             .nav-links.active { display: flex; } 
             .founder-container { grid-template-columns: 1fr; } 
             .logo-text { font-size: 0.9rem; }
             .logo-img { height: 40px; }
+            .partners-grid { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
@@ -154,9 +177,7 @@
                 <span class="sub">WEB SOLUTIONS</span>
             </div>
         </div>
-
         <button class="nav-toggle" id="menu-btn">MENU</button>
-
         <ul class="nav-links" id="nav-menu">
             <li><a href="#about">About</a></li>
             <li><a href="#founder">Leadership</a></li>
@@ -186,29 +207,25 @@
         <h2 class="section-title">// Leadership & Expertise</h2>
         <div class="founder-container">
             <div class="founder-visual">
-                <img src="proffile.jpg" alt="Godwin Edward" class="founder-img">
+                <img src="profile.jpg" alt="Godwin Edward" class="founder-img">
             </div>
             <div class="founder-info">
                 <h3>Edward Godwin</h3>
-                <span class="title">Founder & Chief Executive Officer</span>
-                <p style="color: var(--text-dim); margin-bottom: 20px;">
+                <span class="title">Founder & Chief Strategy Officer</span>
+                <p style="color: var(--text-dim); margin-bottom: 20px; text-align: justify;">
                     A specialist in Cybersecurity and Artificial Intelligence with a deep background in vulnerability assessment and scalable application architecture. Godwin leads the technical vision for Leema Web Solutions, ensuring every project meets elite security standards.
                 </p>
-
-                <h4 class="mono" style="font-size: 0.9rem; margin-bottom: 15px; color: var(--accent-cyan);">[ Professional Experience ]</h4>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-date">2025 - Present</div>
-                        <p><strong>Website Administrator</strong><br>Civil Alliance for Climate Protection</p>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2025</div>
-                        <p><strong>Cyber Security Intern</strong><br>Prodigy InfoTech (Encryption & Network Scanning)</p>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2024</div>
-                        <p><strong>Security & Forensics</strong><br>Cyber Secured India (Vulnerability Assessment)</p>
-                    </div>
+                <h4 class="mono" style="font-size: 0.9rem; margin-bottom: 15px; color: var(--accent-cyan);">[ Professional Journey ]</h4>
+                <div style="color: var(--text-dim); font-size: 0.95rem;">
+                    <p style="margin-bottom: 15px; text-align: justify;">
+                        His expertise in <strong>Artificial Intelligence</strong> is built on a rigorous academic foundation, culminating in a Higher National Diploma in Artificial Intelligence Technology from Abdu Gusau Polytechnic. This focus has allowed him to lead innovative projects, such as the development and deployment of a Speech-to-text transcription system leveraging advanced Natural Language Processing (NLP). His approach to AI is rooted in practical application, moving beyond theory to build intelligent tools that solve real-world efficiency challenges.
+                    </p>
+                    <p style="margin-bottom: 15px; text-align: justify;">
+                        In the realm of <strong>Web Development</strong>, he has served as a remote Website Administrator for several organizations, ranging from Private organizations, Government organization and Non-governmental Organization. He specializes in building fully functional, scalable websites using the Django framework & Python, Laravel framework & PHP, often integrating complex features like QR code-based payment portals to optimize user experience and operational security.
+                    </p>
+                    <p style="text-align: justify;">
+                        His <strong>Cybersecurity</strong> journey involves deep technical training and offensive security researches. Through intensive internships at Cyber Secured India, Prodigy Infotech and Halogen Academy, he is proficient in penetration testing, digital forensics, and network scanning using industry-standard tools like Nmap, Burp Suite, and Metasploit. Beyond assessments, He has developed custom security software, including highly effective encryption tools, packet sniffers, and keyloggers, ensuring that he understands threats from both a defensive and offensive perspective.
+                    </p>
                 </div>
             </div>
         </div>
@@ -236,76 +253,76 @@
     </section>
 
     <section id="contact" style="background: rgba(0, 243, 255, 0.02);">
-    <h2 class="section-title">// Secure Channel</h2>
-    <p style="margin-bottom: 30px; color: var(--text-dim);">
-        Ready to secure your digital future? Send us a message.
-    </p>
-
-    <!-- CONTACT FORM -->
-    <form action="https://formsubmit.co/802c22c146d16d93e2363e38b483e936" method="POST">
-        <input type="text" name="_honey" style="display:none">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://leemawebsolutions.net/thank-you.html">
-
-        <input type="text" name="name" placeholder="Full Name" required>
-        <input type="email" name="email" placeholder="Email Address" required>
-        <input type="text" name="_subject" placeholder="New Project Inquiry">
-        <textarea name="message" rows="5" placeholder="Your Requirements" required></textarea>
-        <button type="submit" class="btn">INITIALIZE CONTACT</button>
-    </form>
-
-    <!-- INTERN APPLICATION SECTION -->
-    <div style="margin-top: 80px;">
-        <h2 class="section-title">// Internship Application Portal</h2>
-        <p style="margin-bottom: 30px; color: var(--text-dim); max-width: 700px;">
-            Leema Web Solutions is building the next generation of AI engineers, security analysts, 
-            and full-stack developers. If you are ready to work on real-world systems, apply below.
-        </p>
-
-        <form action="https://formsubmit.co/802c22c146d16d93e2363e38b483e936"
-              method="POST"
-              enctype="multipart/form-data">
-
-            <!-- Security -->
+        <h2 class="section-title">// Secure Channel</h2>
+        <p style="margin-bottom: 30px; color: var(--text-dim);">Ready to secure your digital future? Send us a message.</p>
+        <form action="https://formsubmit.co/802c22c146d16d93e2363e38b483e936" method="POST">
             <input type="text" name="_honey" style="display:none">
             <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="New Internship Application">
-            <input type="hidden" name="_next" value="https://leemawebsolutions.net/thank-youu.html">
-
-            <input type="text" name="Full Name" placeholder="Full Name" required>
-            <input type="tel" name="Phone Number" placeholder="Phone Number" required>
-            <input type="email" name="Email Address" placeholder="Email Address" required>
-
-            <select name="Internship Category" required
-                style="background:#111; border:1px solid #333; padding:12px; color:white; border-radius:4px;">
-                <option value="">Select Internship Category</option>
-                <option value="Web Development">Web Development</option>
-                <option value="AI Skills">AI Skills</option><option value="Data Analysis">Data Analysis</option><option value="Product Management">Product Management</option>
-                <option value="Cyber Security">Cyber Security</option>
-            </select>
-
-            <label style="color: var(--text-dim); font-size: 0.85rem;">
-                Upload Resume (PDF Only)
-            </label>
-            <input type="file" name="Resume" accept=".pdf" required>
-
-            <label style="color: var(--text-dim); font-size: 0.85rem;">
-                Upload Cover Letter (PDF Only)
-            </label>
-            <input type="file" name="Cover Letter" accept=".pdf">
-
-            <textarea name="Why Ideal Candidate"
-                      rows="6"
-                      placeholder="Why are you an ideal candidate for Leema Web Solutions internship program?"
-                      required></textarea>
-
-            <button type="submit" class="btn">
-                SUBMIT APPLICATION
-            </button>
+            <input type="hidden" name="_next" value="https://leemawebsolutions.net/thank-you.html">
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="text" name="_subject" placeholder="New Project Inquiry">
+            <textarea name="message" rows="5" placeholder="Your Requirements" required></textarea>
+            <button type="submit" class="btn">INITIALIZE CONTACT</button>
         </form>
-    </div>
-</section>
 
+        <div style="margin-top: 80px;">
+            <h2 class="section-title">// Internship Application Portal</h2>
+            <p style="margin-bottom: 30px; color: var(--text-dim); max-width: 700px;">
+                Leema Web Solutions is building the next generation of AI engineers, security analysts, and full-stack developers. If you are ready to work on real-world systems, apply below.
+            </p>
+            <form action="https://formsubmit.co/802c22c146d16d93e2363e38b483e936" method="POST" enctype="multipart/form-data">
+                <input type="text" name="_honey" style="display:none">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_subject" value="New Internship Application">
+                <input type="hidden" name="_next" value="https://leemawebsolutions.net/thank-youu.html">
+                <input type="text" name="Full Name" placeholder="Full Name" required>
+                <input type="tel" name="Phone Number" placeholder="Phone Number" required>
+                <input type="email" name="Email Address" placeholder="Email Address" required>
+                <select name="Internship Category" required style="background:#111; border:1px solid #333; padding:12px; color:white; border-radius:4px;">
+                    <option value="">Select Internship Category</option>
+                    <option value="Web Development">Web Development</option>
+                    <option value="AI Skills">AI Skills</option>
+                    <option value="Data Analysis">Data Analysis</option>
+                    <option value="Product Management">Product Management</option>
+                    <option value="Cyber Security">Cyber Security</option>
+                </select>
+                <label style="color: var(--text-dim); font-size: 0.85rem;">Upload Resume (PDF Only)</label>
+                <input type="file" name="Resume" accept=".pdf" required>
+                <label style="color: var(--text-dim); font-size: 0.85rem;">Upload Cover Letter (PDF Only)</label>
+                <input type="file" name="Cover Letter" accept=".pdf">
+                <textarea name="Why Ideal Candidate" rows="6" placeholder="Why are you an ideal candidate for Leema Web Solutions internship program?" required></textarea>
+                <button type="submit" class="btn">SUBMIT APPLICATION</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="partners">
+        <h2 class="section-title">// Strategic Partnerships</h2>
+        <p style="margin-bottom: 40px; color: var(--text-dim);">Collaborating with leading institutions to deliver high-impact digital solutions.</p>
+        <div class="partners-grid">
+            <div class="partner-card">
+                <img src="csi.png" alt="Civil Alliance for Climate Protection" class="partner-logo">
+                <p>Cyber Secured India</p>
+            </div>
+            <div class="partner-card">
+                <img src="csean.png" alt="Zannah Reporters" class="partner-logo">
+                <p>CSEAN</p>
+            </div>
+            <div class="partner-card">
+                <img src="innovative.jpg" alt="Danaike Services" class="partner-logo">
+                <p>Innovative Assemblage</p>
+            </div>
+            <div class="partner-card">
+                <img src="halogen.png" alt="Fatima Nursery and Primary School" class="partner-logo">
+                <p>Halogen Academy</p>
+            </div>
+            <div class="partner-card">
+                <img src="prodigy.png" alt="Sahel College of Health Sciences" class="partner-logo">
+                <p>Prodigy Infotech</p>
+            </div>
+        </div>
+    </section>
 
     <footer style="padding: 40px 10%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-dim); font-size: 0.8rem;">
         <p>&copy; 2026 LEEMA WEB SOLUTIONS | leemawebsolutions.net</p>
@@ -313,15 +330,12 @@
     </footer>
 
     <script>
-        // --- MOBILE MENU LOGIC ---
         const menuBtn = document.getElementById('menu-btn');
         const navMenu = document.getElementById('nav-menu');
-
         menuBtn.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             menuBtn.innerText = navMenu.classList.contains('active') ? 'CLOSE [X]' : 'MENU';
         });
-
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
@@ -329,7 +343,6 @@
             });
         });
 
-        // --- TYPEWRITER EFFECT ---
         const textElement = document.getElementById('typewriter');
         const phrases = [
             "> Executing Secure Code...",
@@ -337,39 +350,18 @@
             "> Fortifying Digital Perimeters...",
             "> Leema Web Solutions Active."
         ];
-        let i = 0;
-        let j = 0;
-        let currentPhrase = [];
-        let isDeleting = false;
-
+        let i = 0, j = 0, currentPhrase = [], isDeleting = false;
         function loop() {
             textElement.innerHTML = currentPhrase.join('');
             if (i < phrases.length) {
-                if (!isDeleting && j <= phrases[i].length) {
-                    currentPhrase.push(phrases[i][j]);
-                    j++;
-                }
-                if (isDeleting && j <= phrases[i].length) {
-                    currentPhrase.pop();
-                    j--;
-                }
-                if (!isDeleting && j === phrases[i].length) {
-                    isDeleting = true;
-                    setTimeout(loop, 2000); 
-                    return;
-                }
-                if (isDeleting && j === 0) {
-                    currentPhrase = [];
-                    isDeleting = false;
-                    i++;
-                    if (i === phrases.length) i = 0;
-                }
+                if (!isDeleting && j <= phrases[i].length) { currentPhrase.push(phrases[i][j]); j++; }
+                if (isDeleting && j <= phrases[i].length) { currentPhrase.pop(); j--; }
+                if (!isDeleting && j === phrases[i].length) { isDeleting = true; setTimeout(loop, 2000); return; }
+                if (isDeleting && j === 0) { currentPhrase = []; isDeleting = false; i++; if (i === phrases.length) i = 0; }
             }
-            const speed = isDeleting ? 40 : 100;
-            setTimeout(loop, speed);
+            setTimeout(loop, isDeleting ? 40 : 100);
         }
         document.addEventListener('DOMContentLoaded', loop);
     </script>
-
 </body>
 </html>
